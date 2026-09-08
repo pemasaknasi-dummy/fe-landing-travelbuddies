@@ -254,11 +254,21 @@ export const bookingApi = {
   createRepaymentInvoice: async (
     bookingId: number,
     paymentMethod: string,
-    additional_order?: { additionalId: number; quantity: number }[]
+    additional_order?: { additionalId: number; quantity: number }[],
+    options?: {
+      participantIds?: number[];
+      excludedParticipantIds?: number[];
+      slots?: number;
+      amount?: number;
+    }
   ): Promise<{ invoiceUrl: string }> => {
     return httpClient.post(`/bookings/repayment/${bookingId}`, {
       paymentMethod,
       additional_order,
+      participantIds: options?.participantIds,
+      excludedParticipantIds: options?.excludedParticipantIds,
+      slots: options?.slots,
+      amount: options?.amount,
     });
   },
 

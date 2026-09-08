@@ -323,6 +323,11 @@ export default function HistoryBookingDetailPageV3() {
   }, [data]);
 
   const handlePrintInvoice = () => {
+    if (allInvoices.length > 1) {
+      setIsInvoiceHistoryModalOpen(true);
+      return;
+    }
+
     const isDpPaid = data?.payment?.details?.some(
       (p: any) =>
         !p.orderId?.startsWith("TB-ADD-") &&
@@ -354,10 +359,6 @@ export default function HistoryBookingDetailPageV3() {
     const latestInvoiceNumber = targetInvoice?.invoiceNumber;
     const invoiceUrl = `${window.location.origin}/booking/${id}/invoice${latestInvoiceNumber ? `?inv=${latestInvoiceNumber}` : ""}`;
     window.open(invoiceUrl, "_blank");
-    // Modal disabled per user request:
-    // if (allInvoices.length > 1) {
-    //   setIsInvoiceHistoryModalOpen(true);
-    // }
   };
 
   const mappedParticipants = useMemo(() => {

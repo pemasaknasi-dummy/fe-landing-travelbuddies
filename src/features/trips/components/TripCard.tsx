@@ -31,13 +31,36 @@ interface TripCardProps {
   selectedDate?: string | null; // YYYY-MM-DD from search filter
 }
 
+const resolveImageUrl = (image?: string | null, images?: any[]) => {
+  let url = image;
+  if (!url && images && images.length > 0 && images[0]?.images && images[0].images.length > 0) {
+    url = images[0].images[0];
+  }
+  if (!url) return "/images/empty-state.png";
+
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://banana-api.travelbuddies.co.id/api";
+  const apiOrigin = apiUrl.replace(/\/api$/, "");
+
+  if (url.startsWith("http://localhost:3010")) {
+    url = url.replace("http://localhost:3010", apiOrigin);
+  } else if (url.startsWith("/uploads/") || url.startsWith("uploads/")) {
+    url = `${apiOrigin}/${url.replace(/^\//, "")}`;
+  }
+
+  return url;
+};
+
 const TripCard: React.FC<TripCardProps> = ({
   trip,
   baseUrl = "/open-trip",
   isPrivateTrip = false,
   selectedDate,
 }) => {
-  const [imgSrc, setImgSrc] = useState(trip.image || "/images/empty-state.png");
+  const [imgSrc, setImgSrc] = useState(() => resolveImageUrl(trip?.image, trip?.images));
+
+  useEffect(() => {
+    setImgSrc(resolveImageUrl(trip?.image, trip?.images));
+  }, [trip?.image, trip?.images]);
 
   const calculateDiscount = (price: number, promoPrice: number) => {
     return Math.round(((price - promoPrice) / price) * 100);
