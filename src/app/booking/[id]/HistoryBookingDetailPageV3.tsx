@@ -53,7 +53,7 @@ import { AddParticipantModal } from "@/components/sections/booking/AddParticipan
 import { CompleteParticipantModal } from "@/components/sections/booking/CompleteParticipantModal";
 import { ParticipantCard } from "@/components/sections/booking/ParticipantCard";
 import { RepaymentModal } from "@/components/sections/booking/RepaymentModal";
-import { InvoiceHistoryModal } from "@/components/sections/booking/InvoiceHistoryModal";
+
 import { OrderAdditionalModal } from "@/components/sections/booking/OrderAdditionalModal";
 
 dayjs.locale("id");
@@ -168,8 +168,7 @@ export default function HistoryBookingDetailPageV3() {
     useState<boolean>(false);
   const [selectedRepaymentPayment, setSelectedRepaymentPayment] =
     useState<any>(null);
-  const [isInvoiceHistoryModalOpen, setIsInvoiceHistoryModalOpen] =
-    useState<boolean>(false);
+
   const [isOrderAdditionalModalOpen, setIsOrderAdditionalModalOpen] =
     useState<boolean>(false);
   const [additionalQuantities, setAdditionalQuantities] = useState<any[]>([]);
@@ -322,12 +321,8 @@ export default function HistoryBookingDetailPageV3() {
       );
   }, [data]);
 
-  const handlePrintInvoice = () => {
-    if (allInvoices.length > 1) {
-      setIsInvoiceHistoryModalOpen(true);
-      return;
-    }
 
+  const handlePrintInvoice = () => {
     const isDpPaid = data?.payment?.details?.some(
       (p: any) =>
         !p.orderId?.startsWith("TB-ADD-") &&
@@ -2231,14 +2226,7 @@ export default function HistoryBookingDetailPageV3() {
         }}
       />
 
-      {/* Invoice History Modal */}
-      {isInvoiceHistoryModalOpen && (
-        <InvoiceHistoryModal
-          allInvoices={allInvoices}
-          id={id}
-          setIsInvoiceHistoryModalOpen={setIsInvoiceHistoryModalOpen}
-        />
-      )}
+
 
       {/* Repayment Modal */}
       <RepaymentModal
