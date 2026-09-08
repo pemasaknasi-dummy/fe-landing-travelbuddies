@@ -1,0 +1,10 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [{
+            "appID": "MD5S55YAC9.com.travelbuddies.travelBuddiesApp",
+            "paths": ["*"]
+            }
+        ]
+    }
+}

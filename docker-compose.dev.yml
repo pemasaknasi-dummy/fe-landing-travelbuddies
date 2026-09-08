@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  landing_dev:
+    build:
+      context: .
+      args:
+        - NEXT_PUBLIC_API_URL=https://banana-api.travelbuddies.co.id/api
+    container_name: tb_landing_dev
+    restart: always
+    ports:
+      - "3003:3000"
+    env_file:
+      - ./dev/.env

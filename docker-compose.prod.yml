@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  landing_prod:
+    build:
+      context: .
+      args:
+        - NEXT_PUBLIC_API_URL=https://api.travelbuddies.co.id/api
+    container_name: tb_landing_prod
+    restart: always
+    ports:
+      - "3002:3000"
+    env_file:
+      - ./production/.env

@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "id.travelbuddies.app",
+      "sha256_cert_fingerprints": [
+        "BB:E4:9F:6F:C3:86:C1:5F:7C:70:78:C2:1F:76:2B:47:68:67:4C:69:12:31:15:A2:E5:32:D0:E9:54:19:0B:FF",
+        "51:75:FC:BD:07:74:86:F4:81:E8:AA:FC:17:37:C6:5A:76:95:27:82:4F:2A:CE:69:34:A3:46:E6:24:77:77:A3"
+      ]
+    }
+  }
+]

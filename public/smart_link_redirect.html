@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Buddies - Opening App...</title>
+
+    <!-- Open Graph for link previews -->
+    <meta property="og:title" content="Travel Buddies">
+    <meta property="og:description" content="Buka di aplikasi Travel Buddies">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://travelbuddies.co.id">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+            color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 32px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 24px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .status {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 32px;
+            min-height: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .store-buttons {
+            display: none;
+        }
+
+        .store-buttons.visible {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="./images/logo/logo-white.png" alt="Travel Buddies Logo" style="object-fit: contain;">
+        </div>
+
+        <h1>Travel Buddies</h1>
+        <p class="subtitle">Membuka aplikasi...</p>
+
+        <div class="spinner" id="spinner"></div>
+        <p class="status" id="status">Mendeteksi perangkat Anda...</p>
+
+        <div class="buttons">
+            <!-- Shown after redirect attempt -->
+            <div class="store-buttons" id="storeButtons">
+                <p style="font-size: 13px; color: #64748b; margin-bottom: 4px;">
+                    Aplikasi tidak terbuka? Download di sini:
+                </p>
+
+                <a id="btnPlayStore" href="https://play.google.com/store/apps/details?id=id.travelbuddies.app&hl=id"
+                    class="btn btn-primary" style="display: none;">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" />
+                    </svg>
+                    Download di Google Play
+                </a>
+
+                <a id="btnAppStore" href="https://apps.apple.com/id/app/travel-buddies/id6757420967"
+                    class="btn btn-primary" style="display: none;">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                    </svg>
+                    Download di App Store
+                </a>
+            </div>
+
+            <a href="https://travelbuddies.co.id" class="btn btn-secondary" id="btnWebsite" style="display: none;">
+                Buka Website
+            </a>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+
+            const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://travelbuddies.co.id';
+
+            // ===== Configuration =====
+            const CONFIG = {
+                customScheme: 'travelbuddies',
+                deepLinkDomain: baseUrl,
+                playStoreUrl: 'https://play.google.com/store/apps/details?id=id.travelbuddies.app&hl=id',
+                appStoreUrl: 'https://apps.apple.com/id/app/travel-buddies/id6757420967',
+                androidPackage: 'id.travelbuddies.app',
+                iosBundleId: 'com.travelbuddies.travelBuddiesApp',
+                appOpenTimeout: 2500,  // ms to wait before showing fallback
+            };
+
+            // ===== Helpers =====
+            const $ = (id) => document.getElementById(id);
+            const params = new URLSearchParams(window.location.search);
+            const path = params.get('path') || '/';
+
+            function getPlatform() {
+                const ua = navigator.userAgent || navigator.vendor || window.opera;
+                if (/android/i.test(ua)) return 'android';
+                if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'ios';
+                return 'desktop';
+            }
+
+            function setStatus(text) {
+                $('status').textContent = text;
+            }
+
+            function showFallback(platform) {
+                $('spinner').style.display = 'none';
+                $('storeButtons').classList.add('visible');
+                $('btnWebsite').style.display = 'flex';
+
+                if (platform === 'android') {
+                    $('btnPlayStore').style.display = 'flex';
+                    setStatus('Jika aplikasi tidak terbuka, download di bawah ini.');
+                } else if (platform === 'ios') {
+                    $('btnAppStore').style.display = 'flex';
+                    setStatus('Jika aplikasi tidak terbuka, download di bawah ini.');
+                } else {
+                    setStatus('Buka link ini di HP untuk membuka aplikasi.');
+                }
+            }
+
+            // ===== Deep Link Attempt =====
+            function tryOpenApp(platform) {
+                // Build the custom scheme URI
+                const appUri = CONFIG.customScheme + '://' + path.replace(/^\//, '');
+                console.log('Deep link URI:', appUri);
+
+                if (platform === 'android') {
+                    setStatus('Membuka aplikasi Travel Buddies...');
+
+                    // Try Android intent URI first (more reliable)
+                    const intentUri = 'intent://' + path.replace(/^\//, '') +
+                        '#Intent;scheme=' + CONFIG.customScheme +
+                        ';package=' + CONFIG.androidPackage +
+                        ';S.browser_fallback_url=' + encodeURIComponent(CONFIG.playStoreUrl) +
+                        ';end';
+
+                    // Try custom scheme first, then fall back to intent
+                    window.location.href = appUri;
+
+                    setTimeout(function () {
+                        // If we're still here, try intent URI
+                        window.location.href = intentUri;
+                    }, 1000);
+
+                    setTimeout(function () {
+                        showFallback(platform);
+                    }, CONFIG.appOpenTimeout);
+
+                } else if (platform === 'ios') {
+                    setStatus('Membuka aplikasi Travel Buddies...');
+
+                    // On iOS, try universal link first, then custom scheme
+                    const universalLink = CONFIG.deepLinkDomain + '/' + path.replace(/^\//, '');
+
+                    window.location.href = appUri;
+
+                    setTimeout(function () {
+                        showFallback(platform);
+                    }, CONFIG.appOpenTimeout);
+
+                } else {
+                    // Desktop — just show fallback immediately
+                    window.location.href = CONFIG.deepLinkDomain + '/' + path.replace(/^\//, '');
+                    showFallback(platform);
+                }
+            }
+
+            // ===== Listen for page visibility change =====
+            // If user switches to the app, the page becomes hidden
+            var appOpened = false;
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    appOpened = true;
+                }
+            });
+
+            // ===== Run =====
+            var platform = getPlatform();
+            setStatus('Mendeteksi perangkat: ' + (platform === 'android' ? 'Android' : platform === 'ios' ? 'iOS' : 'Desktop'));
+
+            setTimeout(function () {
+                tryOpenApp(platform);
+            }, 500);
+
+        })();
+    </script>
+</body>
+
+</html>

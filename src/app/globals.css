@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  font-family: var(--font-nunito), sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.customPagination .swiper-pagination-bullet {
+  background: #ccc;
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+  margin: 0 5px;
+}
+
+.customPagination .swiper-pagination-bullet-active {
+  background: #000;
+  width: 10px;
+  height: 10px;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE & Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari */
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bar-grow {
+  from { width: 0%; }
+  to   { width: var(--pct); }
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+@keyframes bar-shimmer {
+  0%   { transform: translateX(-150%); }
+  100% { transform: translateX(300%); }
+}
+@keyframes label-fade-up {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.5s ease-in forwards;
+}
+
+/* HTML Content Styles - For rendering dynamic HTML from backend */
+.html-content {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.html-content h1 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+
+.html-content h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.html-content h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+}
+
+.html-content h4 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-top: 1.125rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.html-content h5 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.html-content h6 {
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.html-content p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.html-content ul {
+  list-style-type: disc;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.html-content ul li {
+  margin-bottom: 0.5rem;
+  line-height: 1.75;
+}
+
+.html-content ol {
+  list-style-type: decimal;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.html-content ol li {
+  margin-bottom: 0.5rem;
+  line-height: 1.75;
+}
+
+.html-content strong {
+  font-weight: bold;
+}
+
+.html-content em {
+  font-style: italic;
+}
+
+.html-content a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.html-content a:hover {
+  color: #2563eb;
+}
+
+/* Fix CTA buttons style override inside articles */
+.html-content a[class*="bg-"] {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* ==========================================================================
+   Passwordless Auth Styles & Animations
+   ========================================================================== */
+@keyframes moveCloud {
+  0% {
+    transform: translateX(-150px);
+  }
+  100% {
+    transform: translateX(550px);
+  }
+}
+
+@keyframes flyPlane {
+  0% {
+    transform: translate(0, 80px) rotate(15deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(550px, -80px) rotate(15deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes floatLogo {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.cloud-anim-1 {
+  animation: moveCloud 25s linear infinite;
+}
+
+.cloud-anim-2 {
+  animation: moveCloud 35s linear infinite;
+  animation-delay: -10s;
+}
+
+.cloud-anim-3 {
+  animation: moveCloud 40s linear infinite;
+  animation-delay: -5s;
+}
+
+.plane-anim {
+  animation: flyPlane 18s ease-in-out infinite;
+}
+
+.float-anim {
+  animation: floatLogo 6s ease-in-out infinite;
+}
+
+.glass-input {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.glass-input:focus {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.85);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
